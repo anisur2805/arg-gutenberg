@@ -86,6 +86,128 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/blocks/call-to-actions.js":
+/*!***************************************!*\
+  !*** ./src/blocks/call-to-actions.js ***!
+  \***************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])('arg-gutenberg-blocks/call-to-action', {
+  title: 'Call to Action',
+  icon: 'admin-comments',
+  category: 'common',
+  keywords: ['cta', 'call to action'],
+  attributes: {
+    title: {
+      type: 'string',
+      source: 'html',
+      selector: 'h2'
+    },
+    content: {
+      type: 'string',
+      source: 'html',
+      selector: 'p'
+    },
+    button: {
+      type: 'string',
+      source: 'html',
+      selector: 'button'
+    }
+  },
+
+  /*
+  * Edit function
+  */
+  edit: ({
+    attributes,
+    setAttributes
+  }) => {
+    const {
+      title,
+      content,
+      button
+    } = attributes;
+
+    function setTitle(value) {
+      setAttributes({
+        title: value
+      });
+    }
+
+    ;
+
+    function setContent(value) {
+      setAttributes({
+        content: value
+      });
+    }
+
+    ;
+
+    function setButton(value) {
+      setAttributes({
+        button: value
+      });
+    }
+
+    ;
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "call-to-action 2"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["RichText"], {
+      key: "editable",
+      tagName: "h2",
+      placeholder: "Enter CTA title",
+      value: title,
+      onChange: setTitle
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["RichText"], {
+      key: "editable",
+      tagName: "p",
+      placeholder: "Enter CTA content",
+      value: content,
+      onChange: setContent
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["RichText"], {
+      key: "editable",
+      tagName: "button",
+      placeholder: "Button text",
+      value: button,
+      onChange: setButton
+    })));
+  },
+
+  /**
+   * Save Function
+   */
+  save: ({
+    attributes
+  }) => {
+    const {
+      title,
+      content,
+      button
+    } = attributes;
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "call-to-action front-end"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", null, title), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["RichText"].Content, {
+      tagName: "p",
+      value: content
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("button", null, button)));
+  }
+});
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -97,6 +219,7 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _blocks_call_to_actions_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./blocks/call-to-actions.js */ "./src/blocks/call-to-actions.js");
 
 const {
   registerPlugin
@@ -127,6 +250,7 @@ const {
   withSelect,
   withDispatch
 } = wp.data;
+
 
 let PluginMetaFields = props => {
   console.log("props ", props);
@@ -262,6 +386,29 @@ registerPlugin('arg-gutenberg', {
     }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(PluginMetaFields, null)));
   }
 });
+console.log("hello");
+
+/***/ }),
+
+/***/ "@wordpress/block-editor":
+/*!*************************************!*\
+  !*** external ["wp","blockEditor"] ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["wp"]["blockEditor"]; }());
+
+/***/ }),
+
+/***/ "@wordpress/blocks":
+/*!********************************!*\
+  !*** external ["wp","blocks"] ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["wp"]["blocks"]; }());
 
 /***/ }),
 

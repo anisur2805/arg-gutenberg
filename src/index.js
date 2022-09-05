@@ -2,8 +2,9 @@ const { registerPlugin } = wp.plugins;
 const { PluginSidebar, PluginSidebarMoreMenuItem } = wp.editPost;
 const { __ } = wp.i18n;
 const { Panel, PanelHeader, PanelBody, PanelRow, SelectControl, TextareaControl, TextControl, ToggleControl, Button, Card, CardBody, CardFooter, IconButton } = wp.components;
-
 const { withSelect, withDispatch } = wp.data;
+
+import './blocks/call-to-actions.js';
 
 let PluginMetaFields = (props) => {
 	console.log("props ", props);
@@ -161,3 +162,5 @@ registerPlugin('arg-gutenberg', {
 		);
 	}
 });
+
+console.log("hello")

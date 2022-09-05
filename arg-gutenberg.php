@@ -12,11 +12,11 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  */
 
-if ( !defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
 	exit;
 }
 
 include_once __DIR__ . '/Assets.php';
-include_once __DIR__ . '/Register_Meta.php';
+include_once __DIR__ . '/inc/Register_Meta.php';
 
 

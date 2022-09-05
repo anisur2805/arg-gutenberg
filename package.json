@@ -12,5 +12,9 @@
   "license": "ISC",
   "devDependencies": {
     "@wordpress/scripts": "^16.1.2"
+  },
+  "dependencies": {
+    "@wordpress/block-editor": "^9.8.0",
+    "@wordpress/blocks": "^11.15.0"
   }
 }

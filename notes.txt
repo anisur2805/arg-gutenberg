@@ -1,0 +1,5 @@
+// get value from post meta fields
+wp.data.select('core/editor').getEditedPostAttribute('meta')[''];
+
+// manually add value to meta field
+wp.data.dispatch('core/editor').editPost({meta: {metaKeyName: 'Some value'}});
