@@ -1,0 +1,17 @@
+.wp-block-arg-gutenberg-blocks-button .btn {
+    display: inline-block;
+    padding: .5em 2em;
+    background: #444;
+    color: #fff;
+    border: 2px solid #444;
+    border-radius: 4px;
+    transition: color 300ms, background 300ms;
+    text-decoration: none;
+}
+
+.wp-block-arg-gutenberg-blocks-button .btn:hover,
+.wp-block-arg-gutenberg-blocks-button .btn:active,
+.wp-block-arg-gutenberg-blocks-button .btn:focus {
+    color: #444;
+    background: #fff;
+}

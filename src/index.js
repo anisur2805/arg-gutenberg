@@ -5,9 +5,10 @@ const { Panel, PanelHeader, PanelBody, PanelRow, SelectControl, TextareaControl,
 const { withSelect, withDispatch } = wp.data;
 
 import './blocks/call-to-actions.js';
+import './blocks/Button.jsx';
 
 let PluginMetaFields = (props) => {
-	console.log("props ", props);
+	
 	return (
 		<>
 			<Panel>
@@ -162,5 +163,3 @@ registerPlugin('arg-gutenberg', {
 		);
 	}
 });
-
-console.log("hello")

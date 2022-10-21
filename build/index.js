@@ -86,6 +86,109 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/blocks/Button.jsx":
+/*!*******************************!*\
+  !*** ./src/blocks/Button.jsx ***!
+  \*******************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_ButtonWithLink_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/ButtonWithLink.jsx */ "./src/components/ButtonWithLink.jsx");
+/* harmony import */ var _button_example_view_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./button-example.view.scss */ "./src/blocks/button-example.view.scss");
+
+
+ // import './button-example.editor.scss';
+
+const {
+  registerBlockType
+} = wp.blocks;
+const {
+  InspectorControls,
+  RichText
+} = wp.editor;
+registerBlockType('arg-gutenberg-blocks/button', {
+  title: "Arg Button",
+  icon: 'smiley',
+  category: 'common',
+  keywords: ['btn', 'button'],
+  supports: {
+    align: true
+  },
+  attributes: {
+    buttonText: {
+      type: String
+    },
+    buttonUrl: {
+      type: String
+    }
+  },
+
+  edit(props) {
+    const {
+      className,
+      setAttributes
+    } = props;
+    const {
+      buttonText,
+      buttonUrl
+    } = props.attributes;
+
+    function updateAttribute(key, value) {
+      setAttributes({ // TODO: need to remove this
+        ...props.attributes,
+        [key]: value
+      });
+    }
+
+    return [Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(InspectorControls, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      style: {
+        padding: '1rem 0'
+      }
+    }, "Arg Button Options")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: `${className} anisur-rahman`
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_components_ButtonWithLink_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      text: buttonText,
+      url: buttonUrl,
+      onButtonTextChange: val => updateAttribute('buttonText', val),
+      onURLChange: val => updateAttribute('buttonUrl', val)
+    }))];
+  },
+
+  save(props) {
+    const {
+      buttonText,
+      buttonUrl
+    } = props.attributes;
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "ar-btn"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_components_ButtonWithLink_jsx__WEBPACK_IMPORTED_MODULE_1__["default"].View, {
+      buttonText: buttonText,
+      buttonUrl: buttonUrl
+    }));
+  }
+
+});
+
+/***/ }),
+
+/***/ "./src/blocks/button-example.view.scss":
+/*!*********************************************!*\
+  !*** ./src/blocks/button-example.view.scss ***!
+  \*********************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./src/blocks/call-to-actions.js":
 /*!***************************************!*\
   !*** ./src/blocks/call-to-actions.js ***!
@@ -120,10 +223,18 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])('arg
       source: 'html',
       selector: 'p'
     },
-    button: {
+    image: {
+      type: 'string',
+      selector: 'img',
+      default: 'shorturl.at/hOTV1'
+    },
+    date: {
       type: 'string',
       source: 'html',
-      selector: 'button'
+      selector: 'span'
+    },
+    buttonText: {
+      type: 'string'
     }
   },
 
@@ -132,6 +243,7 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])('arg
   */
   edit: ({
     attributes,
+    className,
     setAttributes
   }) => {
     const {
@@ -151,6 +263,23 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])('arg
     function setContent(value) {
       setAttributes({
         content: value
+      });
+    }
+
+    ;
+
+    function setImage(value) {
+      console.log(value);
+      setAttributes({
+        image: value.sizes.full.url
+      });
+    }
+
+    ;
+
+    function setDate(value) {
+      setAttributes({
+        date: value
       });
     }
 
@@ -183,7 +312,19 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])('arg
       placeholder: "Button text",
       value: button,
       onChange: setButton
-    })));
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: className
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["MediaUpload"], {
+      onSelect: setImage,
+      render: ({
+        open
+      }) => {
+        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
+          src: attributes.image,
+          onClick: open
+        });
+      }
+    }))));
   },
 
   /**
@@ -195,16 +336,71 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])('arg
     const {
       title,
       content,
-      button
+      button,
+      className
     } = attributes;
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: className
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
       className: "call-to-action front-end"
-    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", null, title), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["RichText"].Content, {
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "media"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
+      src: attributes.image
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", null, title), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["RichText"].Content, {
       tagName: "p",
       value: content
-    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("button", null, button)));
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("button", null, button))));
   }
 });
+
+/***/ }),
+
+/***/ "./src/components/ButtonWithLink.jsx":
+/*!*******************************************!*\
+  !*** ./src/components/ButtonWithLink.jsx ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+
+
+const {
+  RichText,
+  URLInputButton
+} = wp.editor;
+
+const ButtonWithLink = props => {
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText, {
+    className: "btn btn--primary",
+    value: props.text,
+    placeholder: "Please enter button text",
+    onChange: props.onButtonTextChange
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(URLInputButton, {
+    url: props.url,
+    onChange: props.onURLChange
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
+    href: "#",
+    className: "btn btn--primary"
+  }, "This will eventually be a button!"));
+};
+
+ButtonWithLink.View = props => {
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText.Content, {
+    className: "btn btn--primary",
+    value: props.buttonText,
+    tagName: "a",
+    href: props.buttonUrl
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ButtonWithLink);
 
 /***/ }),
 
@@ -220,6 +416,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _blocks_call_to_actions_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./blocks/call-to-actions.js */ "./src/blocks/call-to-actions.js");
+/* harmony import */ var _blocks_Button_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./blocks/Button.jsx */ "./src/blocks/Button.jsx");
 
 const {
   registerPlugin
@@ -252,8 +449,8 @@ const {
 } = wp.data;
 
 
+
 let PluginMetaFields = props => {
-  console.log("props ", props);
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(Panel, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(PanelBody, {
     title: __('Posts Meta Fields', 'arg-gutenberg'),
     icon: "editor-bold",
@@ -386,7 +583,6 @@ registerPlugin('arg-gutenberg', {
     }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(PluginMetaFields, null)));
   }
 });
-console.log("hello");
 
 /***/ }),
 
@@ -420,6 +616,17 @@ console.log("hello");
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wp"]["element"]; }());
+
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "React" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["React"]; }());
 
 /***/ })
 

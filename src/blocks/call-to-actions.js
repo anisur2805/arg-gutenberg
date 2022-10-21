@@ -1,5 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
-import { RichText } from '@wordpress/block-editor';
+import { RichText, MediaUpload } from '@wordpress/block-editor';
 
 registerBlockType('arg-gutenberg-blocks/call-to-action', {
 	title: 'Call to Action',
@@ -17,16 +17,24 @@ registerBlockType('arg-gutenberg-blocks/call-to-action', {
 			source: 'html',
 			selector: 'p'
 		},
-		button: {
+		image: {
+			type: 'string',
+			selector: 'img',
+			default: 'shorturl.at/hOTV1',
+		},
+		date: {
 			type: 'string',
 			source: 'html',
-			selector: 'button'
+			selector: 'span'
+		},
+		buttonText: {
+			type: 'string',
 		}
 	},
 	/*
 	* Edit function
 	*/
-	edit: ({ attributes, setAttributes }) => {
+	edit: ({ attributes, className, setAttributes }) => {
 		const { title, content, button } = attributes;
 
 		function setTitle(value){
@@ -34,6 +42,13 @@ registerBlockType('arg-gutenberg-blocks/call-to-action', {
 		};
 		function setContent(value){
 			setAttributes({ content: value });
+		};
+		function setImage(value){
+			console.log( value );
+			setAttributes({ image: value.sizes.full.url, });
+		};
+		function setDate(value){
+			setAttributes({ date: value });
 		};
 		function setButton(value){
 			setAttributes({ button: value });
@@ -63,6 +78,18 @@ registerBlockType('arg-gutenberg-blocks/call-to-action', {
 						value={button}
 						onChange={setButton}
 					/>
+
+					<div className={className}>
+						<MediaUpload
+						    onSelect={setImage}
+							render={({open}) => {
+								return <img 
+									src={attributes.image}
+									onClick={open} 
+								/>
+							}}
+							/>
+					</div>
 				</div>
 			</>
 		);
@@ -71,17 +98,22 @@ registerBlockType('arg-gutenberg-blocks/call-to-action', {
 	 * Save Function
 	 */
 	save: ({ attributes }) => {
-		const { title, content, button } = attributes;
+		const { title, content, button, className } = attributes;
 
 		return (
 			<>
-				<div className="call-to-action front-end">
-					<h2>{title}</h2>
-					<RichText.Content
-						tagName="p"
-						value={content}
-					/>
-					<button>{button}</button>
+				<div className={className}>
+					<div className="call-to-action front-end">
+						<div className="media">
+							<img src={attributes.image} />
+						</div>
+						<h2>{title}</h2>
+						<RichText.Content
+							tagName="p"
+							value={content}
+						/>
+						<button>{button}</button>
+					</div>
 				</div>
 			</>
 		);
