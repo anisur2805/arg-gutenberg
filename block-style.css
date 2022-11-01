@@ -58,3 +58,28 @@
     max-width: 100%;
     height: auto;
 }
+
+/* RTC Blog Style */
+.rtc-post-wrapper {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: calc( 100% - 80px ) !important;
+    width: 100% !important;
+}
+.rtc-post-wrapper a {
+    text-decoration: none;
+}
+.rtc-single-post {
+    padding: 20px 15px;
+    background: #ddd;
+    border-radius: 10px; 
+}
+
+.rtc-single-post .post-title h3 {
+    margin: 0 0 12px;
+}
+.rtc-single-post img {
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
