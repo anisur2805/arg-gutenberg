@@ -3,3 +3,12 @@ wp.data.select('core/editor').getEditedPostAttribute('meta')[''];
 
 // manually add value to meta field
 wp.data.dispatch('core/editor').editPost({meta: {metaKeyName: 'Some value'}});
+
+// TODO::
+two ways block can create
+    1. block.json e sob info rekhe use  // I mean attributes akare
+    2. normal single block file e require field er attributes e 
+
+
+// css/ JS load er standard rules
+

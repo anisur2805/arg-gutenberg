@@ -1,0 +1,60 @@
+.wp-block-arg-alert.alert-danger { color: red; }
+.wp-block-arg-alert.alert-success { color: green; }
+.wp-block-arg-alert.alert-warning { color: orange; }
+
+.cta-btn {
+    background: #000;
+    color: #fff;
+    border: 0;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    line-height: 24px;
+    display: inline-block;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.cta-btn.btn-remove-image {
+    background: #f00;
+    position: absolute;
+    top: 30px;
+    right: 15px;
+}
+
+.cta-image-wrapper {
+    position: relative;
+}
+
+.cta-image {
+    margin: 15px 0;
+}
+
+.wp-block-arg-gutenberg-blocks-call-to-action {
+    background: #ddd;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+
+/* Front-end View only */
+.wp-site-blocks {
+    padding: 0 !important;
+}
+
+.call-to-action-wrapper.cta-frontend-wrapper {
+    max-width: 100%;
+}
+
+.fe-call-to-action {
+    background: #f8f8f8;
+    padding: 120px 50px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.cta-media img {
+    max-width: 100%;
+    height: auto;
+}

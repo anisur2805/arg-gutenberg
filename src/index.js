@@ -6,6 +6,7 @@ const { withSelect, withDispatch } = wp.data;
 
 import './blocks/call-to-actions.js';
 import './blocks/Button.jsx';
+import './blocks/rtc-blog.jsx';
 
 let PluginMetaFields = (props) => {
 	

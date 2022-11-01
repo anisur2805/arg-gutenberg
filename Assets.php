@@ -10,12 +10,24 @@ function arg_enqueue_scripts() {
 		['wp-plugins', 'wp-blocks', 'wp-editor', 'wp-edit-post', 'wp-i18n', 'wp-element', 'wp-components', 'wp-data']
 	);
 
-	// wp_enqueue_style(
-	// 	'my-block-editor-css',
-	// 	plugins_url('src/editor.scss', __FILE__),
-	// 	['wp-edit-blocks'],
-	// 	filemtime(plugin_dir_path(__FILE__) . 'blocks/custom-block/editor-styles.css')
-	// );
+	wp_enqueue_script(
+		'rtc-blog', 
+		plugins_url('rtc-blog.js', __FILE__),
+		[ 'wp-blocks' ]
+	);
+
+	wp_enqueue_script(
+		'arg-static-block', 
+		plugins_url('static-block.js', __FILE__),
+		[ 'wp-blocks', 'wp-element' ]
+	);
+
+	wp_enqueue_style(
+		'my-block-editor-css',
+		plugins_url('assets/css/editor.scss', __FILE__),
+		['wp-edit-blocks'],
+		filemtime(plugin_dir_path(__FILE__) . 'assets/css/editor.scss')
+	);
 }
 // Hook the enqueue functions into the admin editor
 add_action('enqueue_block_editor_assets', 'arg_enqueue_scripts');
@@ -47,15 +59,23 @@ add_action('admin_enqueue_scripts', function () {
 function my_block_plugin_scripts() {
 
 	// Enqueue block editor styles
+	// wp_enqueue_style(
+	// 	'my-block-css',
+	// 	plugins_url('/blocks/custom-block/styles.css', __FILE__),
+	// 	[]
+	// );
+
 	wp_enqueue_style(
-		'my-block-css',
-		plugins_url('/blocks/custom-block/styles.css', __FILE__),
-		[]
+		'arg-block-style',
+		plugins_url('block-style.css', __FILE__),
+		array(),
+		filemtime( plugin_dir_path( __FILE__ ) . 'block-style.css' )
 	);
+
 }
 
 // Hook the enqueue functions into the frontend and editor
-// add_action('enqueue_block_assets', 'my_block_plugin_scripts');
+add_action('enqueue_block_assets', 'my_block_plugin_scripts');
 
 
 add_action('init', function () {
