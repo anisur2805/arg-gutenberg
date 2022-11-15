@@ -7,8 +7,8 @@ wp.data.dispatch('core/editor').editPost({meta: {metaKeyName: 'Some value'}});
 // TODO::
 two ways block can create
     1. block.json e sob info rekhe use  // I mean attributes akare
-    2. normal single block file e require field er attributes e 
-
+    2. normal single block file e require field er attributes e
+    :: My Solution: Edit/ Save function: how to manage multiple widget/ block for edit/ save functionality ::
 
 // css/ JS load er standard rules
 

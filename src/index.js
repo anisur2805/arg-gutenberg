@@ -8,6 +8,9 @@ import './blocks/call-to-actions.js';
 import './blocks/Button.jsx';
 import './blocks/rtc-blog.jsx';
 
+// TODO:: color settings
+// import './blocks/colorSettings.jsx';
+
 let PluginMetaFields = (props) => {
 	
 	return (
